@@ -4,6 +4,7 @@ import Options from "./components/Options.jsx";
 import Notification from "./components/Notification.jsx";
 import feedback from "./components/Feedback.jsx";
 import {useEffect, useState} from "react";
+import Description from "./components/Description.jsx";
 
 function App() {
   const [feedback, setFeedback] = useState(
@@ -15,7 +16,7 @@ function App() {
     bad: 0
   })
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-
+  const positive = Math.round((feedback.good / totalFeedback) * 100)
 
   const updateFeedback = feedbackType => {
     if (!feedbackType){
@@ -38,16 +39,13 @@ function App() {
 
   return (
     <div>
-      <h1>Sip Happens Café</h1>
-      <p>Please leave your feedback about our service by selecting one of the options below.
-      </p>
+      <Description/>
       <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback}/>
       {totalFeedback
         ?
         <Feedback
           feedback={feedback}
-          totalFeedback={totalFeedback}
-          good={feedback.good}/>
+          positive={positive}/>
         :
         <Notification/>
       }

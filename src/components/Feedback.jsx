@@ -1,13 +1,13 @@
 import React from 'react';
 
 
-const Feedback = ({feedback, good, totalFeedback}) => {
+const Feedback = ({feedback, positive}) => {
   return (
     <div>
       <p>Good: {feedback.good}</p>
       <p>Neutral: {feedback.neutral}</p>
       <p>Bad: {feedback.bad}</p>
-      <p>Positive: {Math.round((good / totalFeedback) * 100)}%</p>
+      <p>Positive: {positive}%</p>
     </div>
   );
 };
